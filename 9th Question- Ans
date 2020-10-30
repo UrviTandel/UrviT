@@ -1,0 +1,76 @@
+class LinkedList_pract
+{ 
+    Node head;  
+
+    class Node 
+    { 
+        int data; 
+        Node next; 
+        Node(int d) {data = d; next = null; } 
+    } 
+  
+    void rm_Duplicates() 
+    { 
+        Node current = head; 
+  
+        Node next_next; 
+   
+        while (current.next != null) { 
+  
+            
+            if (current.data == current.next.data) { 
+                next_next = current.next.next; 
+                current.next = null; 
+                current.next = next_next; 
+            } 
+            else 
+               current = current.next; 
+        } 
+    } 
+                      
+    public void get_data(int new_data) 
+    { 
+        /* 1 & 2: Allocate the Node & 
+                  Put in the data*/
+        Node new_node = new Node(new_data); 
+   
+        /* 3. Make next of new Node as head */
+        new_node.next = head; 
+   
+        /* 4. Move the head to point to new Node */
+        head = new_node; 
+    } 
+  
+
+     void printList() 
+     { 
+         Node temp = head; 
+         while (temp != null) 
+         { 
+            System.out.print(temp.data+" "); 
+            temp = temp.next; 
+         }   
+         System.out.println(); 
+     } 
+  
+    public static void main(String args[]) 
+    { 
+        LinkedList_pract list = new LinkedList_pract(); 
+        list.get_data(20); 
+        list.get_data(13); 
+        list.get_data(13); 
+        list.get_data(11); 
+        list.get_data(11); 
+        list.get_data(11); 
+        list.get_data(50); 
+        list.get_data(50); 
+          
+        System.out.println("List before removal of duplicates"); 
+        list.printList(); 
+          
+        list.rm_Duplicates(); 
+          
+        System.out.println("List after removal of elements"); 
+       list.printList(); 
+    } 
+}  
